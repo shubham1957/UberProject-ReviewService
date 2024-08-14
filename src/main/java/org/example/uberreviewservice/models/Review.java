@@ -24,4 +24,14 @@ public class Review extends BaseModel{
 
     private double rating;
 
+    @Override
+    public String toString() {
+        return "Review{" +
+                "content='" + content + '\'' +
+                ", rating=" + rating +
+                ", id=" + id +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
 }

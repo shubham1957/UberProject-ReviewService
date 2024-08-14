@@ -24,16 +24,16 @@ import java.util.Date;
 public abstract class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     @CreatedDate
     // this will tell spring that only handel it for object creation, and you don't need to pass it while creating object
-    private Date createdAt;
+    protected Date createdAt;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate // this will tell spring that only handel it for object update, and you don't hve to pass it
-    private Date updatedAt;
+    protected Date updatedAt;
 }
