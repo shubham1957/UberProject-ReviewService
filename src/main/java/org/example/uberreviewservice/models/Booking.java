@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.engine.internal.Cascade;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,5 +29,11 @@ public class Booking extends  BaseModel{
     private Date endDate;
 
     private Long totalDistance;
+
+    @ManyToOne
+    private Driver driver;
+
+    @ManyToOne
+    private Passenger passenger;
 
 }
