@@ -35,4 +35,5 @@ public class Review extends BaseModel{
                 ", updatedAt=" + updatedAt +
                 '}';
     }
+
 }

@@ -23,7 +23,7 @@ import java.util.Date;
 // class has been made abstract, so that no object can be created ou of it.
 public abstract class BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(nullable = false)

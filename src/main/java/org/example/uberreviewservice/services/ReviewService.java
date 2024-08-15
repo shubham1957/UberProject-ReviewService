@@ -1,11 +1,14 @@
 package org.example.uberreviewservice.services;
 
+import org.example.uberreviewservice.models.Booking;
 import org.example.uberreviewservice.models.Review;
 import org.example.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService implements CommandLineRunner {
@@ -14,8 +17,10 @@ public class ReviewService implements CommandLineRunner {
     // which is useful for tasks like initializing data, running scripts, or performing startup checks.
 
     private ReviewRepository reviewRepository;
-    public ReviewService(ReviewRepository reviewRepository) {
+    private BookingRepository bookingRepository;
+    public ReviewService(ReviewRepository reviewRepository, BookingRepository bookingRepository) {
         this.reviewRepository = reviewRepository;
+        this.bookingRepository = bookingRepository;
     }
 
     @Override
@@ -25,9 +30,12 @@ public class ReviewService implements CommandLineRunner {
                 .content("Great Ride")
                 .rating(4.5)
                 .build();
-        reviewRepository.save(r);
+        Booking b = Booking.builder()
+                .review(r)
+                .endDate(new Date())
+                .build();
 
-        System.out.println();
+        bookingRepository.save(b);
 
         List<Review> reviews = reviewRepository.findAll();
 
@@ -36,5 +44,7 @@ public class ReviewService implements CommandLineRunner {
         }
 
         //reviewRepository.deleteById(2L);
+
+
     }
 }
