@@ -16,7 +16,8 @@ import java.util.Date;
 
 @Builder
 @Entity // Works on application layer
-@Table(name = "bookingreview") // It works on database layer
+@Table(name = "booking_review") // It works on database layer
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Review extends BaseModel{
 
     @Column(nullable = false)
