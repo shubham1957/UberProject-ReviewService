@@ -3,6 +3,7 @@ package org.example.uberreviewservice.models;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.engine.internal.Cascade;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,8 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Booking extends  BaseModel{
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Review review; // we have added 1:1 relationship between booking and review
 
     @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
@@ -30,10 +29,15 @@ public class Booking extends  BaseModel{
 
     private Long totalDistance;
 
-    @ManyToOne
-    private Driver driver;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Review review; // we have added 1:1 relationship between booking and review, One booking will have one review and a review belongs to a booking
+
 
     @ManyToOne
-    private Passenger passenger;
+    private Driver driver; //Many Booking belongs to a driver and a driver belongs to many booking
+
+    @ManyToOne
+    private Passenger passenger; //Many Booking belongs to a person
+
 
 }
