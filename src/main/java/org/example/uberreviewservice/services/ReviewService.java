@@ -1,5 +1,6 @@
 package org.example.uberreviewservice.services;
 
+import jakarta.transaction.Transactional;
 import org.example.uberreviewservice.models.Booking;
 import org.example.uberreviewservice.models.Driver;
 import org.example.uberreviewservice.models.Review;
@@ -9,11 +10,11 @@ import org.example.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.beans.Transient;
+import java.util.*;
 
 @Service
+
 public class ReviewService implements CommandLineRunner {
     private final DriverRepository driverRepository;
     //CommandLineRunner interface is used to execute code after the Spring Boot application has started.
@@ -29,6 +30,7 @@ public class ReviewService implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
 //        System.out.println("Welcome to the UberReview Service!");
 //        Review r = Review.builder()
@@ -72,11 +74,21 @@ public class ReviewService implements CommandLineRunner {
 //            System.out.println(booking.getPassenger().getName()+"---"+booking.getBookingStatus());
 //        }
 
-        Optional<Driver> d1 = driverRepository.hqlFindByIdAndLicense(1L,"DL2024123");
+//        Optional<Driver> d1 = driverRepository.hqlFindByIdAndLicense(1L,"DL2024123");
+//
+//        System.out.println(d1.get().getName());
 
-        System.out.println(d1.get().getName());
+        List<Long> driverIds = new ArrayList<>(Arrays.asList(3L));
 
+        List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
 
+//       List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers);
+        for(Driver driver : drivers){
+            List<Booking> bookings =driver.getBookings();
+            bookings.forEach(booking -> {
+                System.out.println(booking.getId());
+            });
+        }
 
     }
 }

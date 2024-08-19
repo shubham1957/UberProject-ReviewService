@@ -33,10 +33,10 @@ public class Booking extends  BaseModel{
     private Review review; // we have added 1:1 relationship between booking and review, One booking will have one review and a review belongs to a booking
 
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     private Driver driver; //Many Booking belongs to a driver and a driver belongs to many booking
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Passenger passenger; //Many Booking belongs to a person
 
 

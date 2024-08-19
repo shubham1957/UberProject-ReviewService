@@ -23,4 +23,7 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
 
    @Query("SELECT d FROM Driver d WHERE d.id = :id AND d.licenseNumber = :ln") // Hibernate query, error is thrown at compile time, so testing become easy
    Optional<Driver> hqlFindByIdAndLicense(Long id, String ln);
+
+   List<Driver> findAllByIdIn(List<Long> driverIds);
+
 }
