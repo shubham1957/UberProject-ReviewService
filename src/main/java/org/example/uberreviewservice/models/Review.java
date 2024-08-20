@@ -18,12 +18,14 @@ import java.util.Date;
 @Entity // Works on application layer
 @Table(name = "booking_review") // It works on database layer
 @Inheritance(strategy = InheritanceType.JOINED)
+
+// This is Review for booking that will go for driver as well
 public class Review extends BaseModel{
 
     @Column(nullable = false)
-    private String content;
+    private String content; //
 
-    private double rating;
+    private double rating; // rating to driver
 
     @Override
     public String toString() {
