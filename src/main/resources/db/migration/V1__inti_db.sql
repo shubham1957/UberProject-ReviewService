@@ -1,4 +1,4 @@
-CREATE TABLE booking
+CREATE TABLE IF NOT EXISTS booking
 (
     id             BIGINT AUTO_INCREMENT NOT NULL,
     created_at     date     NOT NULL,
@@ -13,9 +13,9 @@ CREATE TABLE booking
     CONSTRAINT pk_booking PRIMARY KEY (id)
 );
 
-CREATE TABLE booking_review
+CREATE TABLE IF NOT EXISTS booking_review
 (
-    id  BIGINT AUTO_INCREMENT NOT NULL,
+    id         BIGINT AUTO_INCREMENT NOT NULL,
     created_at date         NOT NULL,
     updated_at datetime     NOT NULL,
     content    VARCHAR(255) NOT NULL,
