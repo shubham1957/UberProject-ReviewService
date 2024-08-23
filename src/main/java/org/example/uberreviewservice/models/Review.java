@@ -1,14 +1,10 @@
 package org.example.uberreviewservice.models;
+
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import java.util.Date;
 
 @Getter
 @Setter
-
 // There are 2^n constructors are possible so creating them manually is tough.
 @NoArgsConstructor //Automatically generates a no-argument constructor.
 @AllArgsConstructor //Automatically generates a constructor that takes one argument for each field in the class.
@@ -25,7 +21,11 @@ public class Review extends BaseModel{
     @Column(nullable = false)
     private String content; //
 
-    private double rating; // rating to driver
+    private Double rating; // rating to driver
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false) // review cannot be created without a bookings
+    private Booking booking;
 
     @Override
     public String toString() {
@@ -33,6 +33,7 @@ public class Review extends BaseModel{
                 "content='" + content + '\'' +
                 ", rating=" + rating +
                 ", id=" + id +
+                ", Booking="+ booking.getId() +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

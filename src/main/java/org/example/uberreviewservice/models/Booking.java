@@ -2,12 +2,7 @@ package org.example.uberreviewservice.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.engine.internal.Cascade;
-import org.springframework.context.annotation.Lazy;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -28,9 +23,6 @@ public class Booking extends  BaseModel{
     private Date endDate;
 
     private Long totalDistance;
-
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Review review; // we have added 1:1 relationship between booking and review, One booking will have one review and a review belongs to a booking
 
 
     @ManyToOne (fetch = FetchType.LAZY)

@@ -19,8 +19,7 @@ import java.util.Date;
 @Setter
 @MappedSuperclass //no table can be created for parent class
 // each child class will have a separate table with its own attribute and parent class attributes
-
-// class has been made abstract, so that no object can be created ou of it.
+// class has been made abstract, so that no object can be created out of it.
 public abstract class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
