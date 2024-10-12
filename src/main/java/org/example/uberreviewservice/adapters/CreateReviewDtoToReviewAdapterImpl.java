@@ -1,8 +1,8 @@
 package org.example.uberreviewservice.adapters;
 
+import org.example.uberprojectentityservice.models.Booking;
+import org.example.uberprojectentityservice.models.Review;
 import org.example.uberreviewservice.dtos.CreateReviewDto;
-import org.example.uberreviewservice.models.Booking;
-import org.example.uberreviewservice.models.Review;
 import org.example.uberreviewservice.repositories.BookingRepository;
 import org.springframework.stereotype.Component;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import java.util.Optional;
 @Component
 public class CreateReviewDtoToReviewAdapterImpl implements CreateReviewDtoToReviewAdapter{
 
-    private BookingRepository bookingRepository;
+    private final BookingRepository bookingRepository;
 
     public  CreateReviewDtoToReviewAdapterImpl(BookingRepository bookingRepository){
         this.bookingRepository=bookingRepository;

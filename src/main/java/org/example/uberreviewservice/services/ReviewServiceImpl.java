@@ -2,7 +2,7 @@ package org.example.uberreviewservice.services;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.example.uberreviewservice.models.Review;
+import org.example.uberprojectentityservice.models.Review;
 import org.example.uberreviewservice.repositories.ReviewRepository;
 import org.hibernate.FetchNotFoundException;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class ReviewServiceImpl implements ReviewService{
 
-    public ReviewRepository reviewRepository;
+    public final ReviewRepository reviewRepository;
 
     public ReviewServiceImpl (ReviewRepository repository){
         this.reviewRepository=repository;
